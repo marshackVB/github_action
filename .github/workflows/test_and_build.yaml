@@ -10,7 +10,9 @@ jobs:
       with:
         python-version: '3.7.7'
     - name: Configure Python environment
-      run: pipenv install --dev --ignore-pipfile
+      run: |
+        pip install pipenv
+        pipenv install --dev --ignore-pipfile
     - name: Check types
       run: |
         pipenv run python -m mypy ./tests --config-file ./mypy.ini
