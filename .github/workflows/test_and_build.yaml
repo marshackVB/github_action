@@ -16,7 +16,7 @@ jobs:
         pipenv run python -m mypy ./tests --config-file ./mypy.ini
         pipenv run python -m mypy ./transformers --config-file ./mypy.ini
     - name: Unit tests
-      command: |
+      run: |
         mkdir ./tests/results
         pipenv run python -m pytest --junitxml=./tests/results/results.xml
     
