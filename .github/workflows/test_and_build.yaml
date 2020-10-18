@@ -9,8 +9,18 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: '3.7.7'
-    - name: Display Python version
-      run: python -c "import sys; print(sys.version)"
+    - name: Configure Python environment
+      run: pipenv install --dev --ignore-pipfile
+    - name: Check types
+      run: |
+        pipenv run python -m mypy ./tests --config-file ./mypy.ini
+        pipenv run python -m mypy ./transformers --config-file ./mypy.ini
+    - name: Unit tests
+      command: |
+        mkdir ./tests/results
+        pipenv run python -m pytest --junitxml=./tests/results/results.xml
+    
+
 
 
 
